@@ -20,4 +20,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build --build-arg UBUNTU_OS_RELEASE={{ matrix.ubuntu_os_release }} --file Dockerfile --tag sdkmanager:$(date +%s) .
+      run: docker build . --build-arg "UBUNTU_OS_RELEASE={{ matrix.ubuntu_os_release }}" --file Dockerfile --tag sdkmanager:$(date +%s)
