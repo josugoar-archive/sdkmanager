@@ -9,11 +9,15 @@ on:
 
 jobs:
 
-  build:
+  ubuntu_os_release_matrix:
+
+    strategy:
+      matrix:
+        ubuntu_os_release: [ 18.04 ]
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag sdkmanager:$(date +%s)
+      run: docker build . --build-arg UBUNTU_OS_RELEASE={{ matrix.ubuntu_os_release }} --file Dockerfile --tag sdkmanager:$(date +%s)
